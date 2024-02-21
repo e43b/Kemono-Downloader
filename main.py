@@ -6,14 +6,14 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
 # Configurando o logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def sanitize_filename(filename):
     """Remove caracteres especiais de um nome de arquivo."""
     return re.sub(r'[<>:"/\\|?*]', '', filename)
 
 # URL da página
-url = "https://kemono.su/patreon/user/9919437/post/88111521"
+url = input("Digite o Link do Post: ")
 
 # Fazendo a requisição HTTP
 response = requests.get(url)
@@ -31,6 +31,9 @@ if response.status_code == 200:
     title = title.split("by")[0].strip().replace(" ", "_")
     title = sanitize_filename(title)
 
+    # Limitando o número de caracteres do nome da pasta
+    title = title[:45]
+
     # Criando a pasta com o título como nome
     os.makedirs(title, exist_ok=True)
 
@@ -43,13 +46,12 @@ if response.status_code == 200:
         image_response = requests.get(image_url)
         if image_response.status_code == 200:
             # Extrai a extensão do arquivo da URL
-            filename, ext = os.path.splitext(os.path.basename(urlparse(image_url).path))
+            _, ext = os.path.splitext(os.path.basename(urlparse(image_url).path))
             # Salva a imagem numerada com a extensão original
             image_path = os.path.join(title, f"{idx + 1}{ext}")
             with open(image_path, "wb") as f:
                 f.write(image_response.content)
-            logging.info(f"Imagem salva com sucesso: {image_path}")
-        else:
-            logging.error(f"Falha ao baixar a imagem: {image_url}")
+            print(f"Imagem {idx + 1} baixada.")
+    print("Todos os downloads foram concluídos.")
 else:
     logging.error("Falha ao acessar a página.")
