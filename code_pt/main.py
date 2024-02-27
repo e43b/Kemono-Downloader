@@ -16,7 +16,7 @@ if opcao == "1":
     os.system("python scripts/postimg.py")
 elif opcao == "2":
     # Executar script para baixar posts de texto
-    os.system("python scripts/postmensagens.py")
+    os.system("python scripts/postmenssages.py")
 elif opcao == "3":
     # Executar script para baixar todos os posts com imagens de um perfil
     os.system("python scripts/profileimg.py")
