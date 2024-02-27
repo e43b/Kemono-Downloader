@@ -1,6 +1,4 @@
 import os
-print("Welcome to Kemono Downloader")
-print("\nThis script was created by e42b, access the project repository at https://github.com/e43b/Kemono-Downloader/")
 
 print("\nTo download a single post with images, type 1")
 print("To download a single text post, type 2")
