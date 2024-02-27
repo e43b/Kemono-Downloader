@@ -1,8 +1,5 @@
 import os
 
-print("Bem vindos ao Kemono Downloader")
-print("\nEsse script foi criado por e42b, acesse o repositório do projeto em https://github.com/e43b/Kemono-Downloader/")
-
 print("\nPara baixar um único post com imagens digite 1")
 print("Para baixar um único post de texto digite 2")
 print("Para baixar todos os posts com imagens de um perfil digite 3")
