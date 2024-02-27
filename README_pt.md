@@ -42,13 +42,14 @@ No Kemono, é comum encontrar dois tipos de posts: os posts compostos por imagen
 
 - Para baixar um post composto por imagens, escolha a opção número 1.
 - Para baixar um post de texto, escolha a opção número 2.
+- Para baixar o conteúdo em texto e as imagens de um post, escolha a opção 3.
 
 Também é viável baixar todos os posts de um perfil:
 
-- Se desejar baixar todos os posts de imagens de um perfil, selecione a opção número 3.
-- Se preferir baixar todos os posts de texto de um perfil, escolha a opção número 4.
+- Se desejar baixar todos os posts de imagens de um perfil, selecione a opção número 4.
+- Se preferir baixar todos os posts de texto de um perfil, escolha a opção número 5.
 
-Além disso, é possível baixar todas as mensagens diretas (DMs) de um perfil, optando pela opção número 5.
+Além disso, é possível baixar todas as mensagens diretas (DMs) de um perfil, optando pela opção número 6.
 
 ### Nota
 
