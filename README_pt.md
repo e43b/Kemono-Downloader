@@ -25,12 +25,12 @@ pip install requests beautifulsoup4
 
 ### Como Usar
 
-1. Clone este repositório ou baixe o script `main.py`.
+1. Clone este repositório ou baixe o script `main_pt.py`.
 2. Navegue até o diretório onde o script está localizado.
 3. Execute o script utilizando o Python:
 
 ```
-python main.py
+python main_pt.py
 ```
 
 4. Você será solicitado a inserir o link do post do Kemono que deseja baixar imagens.
