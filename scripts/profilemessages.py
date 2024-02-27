@@ -1,6 +1,7 @@
 import os
 import requests
 from bs4 import BeautifulSoup
+import time
 import re
 
 # Função para extrair links de uma página específica
