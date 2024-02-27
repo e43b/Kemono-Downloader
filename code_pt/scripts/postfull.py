@@ -23,19 +23,21 @@ if response.status_code == 200:
     # Parseando o conteúdo HTML
     soup = BeautifulSoup(response.content, "html.parser")
 
-    # Encontrando o título da página
-    title_tag = soup.find("title")
-    title = title_tag.text.strip()
+    # Extrair o nome da pasta a partir da tag meta
+    meta_tag = soup.find('meta', property='og:title')
+    if meta_tag:
+        folder_name = meta_tag['content']
+    else:
+        folder_name = "Pasta_Sem_Nome"  # Nome padrão caso a tag não seja encontrada
 
-    # Removendo tudo após "by" e substituindo espaços por underscore
-    title = title.split("by")[0].strip().replace(" ", "_")
-    title = sanitize_filename(title)
+    # Removendo caracteres inválidos para nome de pasta
+    folder_name = sanitize_filename(folder_name)
 
     # Limitando o número de caracteres do nome da pasta
-    title = title[:45]
+    folder_name = folder_name[:45]
 
-    # Criando a pasta com o título como nome
-    folder_path = os.path.abspath(title)
+    # Criando a pasta com o nome extraído
+    folder_path = os.path.abspath(folder_name)
     os.makedirs(folder_path, exist_ok=True)
 
     # Encontrando todas as tags 'a' com a classe 'fileThumb'
