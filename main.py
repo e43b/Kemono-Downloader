@@ -1,57 +1,18 @@
 import os
-import requests
-import logging
-import re
-from bs4 import BeautifulSoup
-from urllib.parse import urlparse
 
-# Configuring logging
-logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
+print("Welcome to Kemono Downloader")
+print("\nThis script was created by e42b, access the project repository at https://github.com/e43b/Kemono-Downloader/")
 
-def sanitize_filename(filename):
-    """Remove special characters from a filename."""
-    return re.sub(r'[<>:"/\\|?*]', '', filename)
+print("\nTo access the script in English, type 1")
+print("Para acessar o script em Português digite 2")
 
-# Page URL
-url = input("Enter the Post Link: ")
+option = input("\nEnter your option: ")
 
-# Making the HTTP request
-response = requests.get(url)
-
-# Checking if the request was successful
-if response.status_code == 200:
-    # Parsing HTML content
-    soup = BeautifulSoup(response.content, "html.parser")
-
-    # Finding the page title
-    title_tag = soup.find("title")
-    title = title_tag.text.strip()
-
-    # Removing everything after "by" and replacing spaces with underscores
-    title = title.split("by")[0].strip().replace(" ", "_")
-    title = sanitize_filename(title)
-
-    # Limiting the number of characters in the folder name
-    title = title[:45]
-
-    # Creating the folder with the title as its name
-    os.makedirs(title, exist_ok=True)
-
-    # Finding all 'a' tags with the class 'fileThumb'
-    file_thumb_links = soup.find_all("a", class_="fileThumb")
-
-    # Extracting the links from the found tags and saving the images in the created folder
-    for idx, link in enumerate(file_thumb_links):
-        image_url = link["href"]
-        image_response = requests.get(image_url)
-        if image_response.status_code == 200:
-            # Extracting the file extension from the URL
-            _, ext = os.path.splitext(os.path.basename(urlparse(image_url).path))
-            # Saving the numbered image with the original extension
-            image_path = os.path.join(title, f"{idx + 1}{ext}")
-            with open(image_path, "wb") as f:
-                f.write(image_response.content)
-            print(f"Image {idx + 1} downloaded.")
-    print("All downloads have been completed.")
+if option == "1":
+    # Runs the script with the interface in English
+    os.system("python code_en/main.py")
+elif option == "2":
+    # Runs the script with the interface in Portuguese
+    os.system("python code_pt/main.py")
 else:
-    logging.error("Failed to access the page.")
+    print("Invalid option. Please choose a valid one.")
