@@ -1,5 +1,7 @@
 # Kemono-Downloader
 
+[English](README.md) | Português
+
 ## Scraping de Imagens de Posts do [Kemono](https://kemono.su/)
 
 Este script Python permite baixar imagens de posts do Kemono, utilizando a biblioteca BeautifulSoup para fazer o parsing do conteúdo HTML da página.
