@@ -33,9 +33,22 @@ pip install requests beautifulsoup4
 python main.py
 ```
 
-4. You will be prompted to input the link of the Kemono post you want to download images from.
-5. The script will download the images from the post to a directory with the post title as its name.
-6. The images will be saved in this directory.
+4. When running the script, you will be prompted to enter an option to choose the language in which you want to execute the code.
+5. After entering the desired language, the options will be displayed. Simply select the one that best suits your needs.
+
+### Explaining the Options
+
+In Kemono, it's common to find two types of posts: posts composed of images and text posts. This script offers the possibility to download both types of posts.
+
+- To download a post composed of images, choose option number 1.
+- To download a text post, choose option number 2.
+
+It's also possible to download all posts from a profile:
+
+- If you want to download all image posts from a profile, select option number 3.
+- If you prefer to download all text posts from a profile, choose option number 4.
+
+Additionally, it's possible to download all direct messages (DMs) from a profile by selecting option number 5.
 
 ### Note
 
