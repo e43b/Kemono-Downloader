@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
-# URL do post
-url = input('Digite o link do post com avisos: ')
+# URL da página
+url = "https://kemono.su/patreon/user/17913091/post/95645996"
 
 # Faça a solicitação HTTP
 response = requests.get(url)
@@ -40,6 +40,19 @@ if response.status_code == 200:
         for link in download_links:
             downloads += f"Link de Download: {link['href']}\n"
 
+    # Extraia os comentários
+    comments = ""
+    comments_section = soup.find('footer', class_='post__footer')
+    if comments_section:
+        comments_header = comments_section.find('h2', class_='site-section__subheading')
+        if comments_header and comments_header.text.strip() == 'Comments':
+            comment_articles = comments_section.find_all('article', class_='comment')
+            for article in comment_articles:
+                commenter = article.find('a', class_='fancy-link fancy-link--local comment__name').text.strip()
+                comment_message = article.find('p', class_='comment__message').text.strip()
+                comment_time = article.find('time', class_='timestamp').text.strip()
+                comments += f"Comentário de {commenter} ({comment_time}):\n{comment_message}\n\n"
+
     # Nomeie o arquivo com o título da postagem
     file_name = "{}.txt".format(title)
 
@@ -49,7 +62,9 @@ if response.status_code == 200:
         file.write("\nData de Publicação: {}\n".format(published))
         file.write("\nConteúdo:{}\n".format(content))
         if downloads:
-            file.write("Downloads:\n{}".format(downloads))
+            file.write("\nDownloads:\n{}".format(downloads))
+        if comments:
+            file.write("\nComentários:\n{}".format(comments))
 
     print("Conteúdo da postagem salvo com sucesso em '{}'.\n".format(file_name))
 else:
