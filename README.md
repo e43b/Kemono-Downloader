@@ -42,13 +42,14 @@ In Kemono, it's common to find two types of posts: posts composed of images and 
 
 - To download a post composed of images, choose option number 1.
 - To download a text post, choose option number 2.
+- To download the text content and images from a post, choose option 3.
 
 It's also possible to download all posts from a profile:
 
-- If you want to download all image posts from a profile, select option number 3.
-- If you prefer to download all text posts from a profile, choose option number 4.
+- If you want to download all image posts from a profile, select option number 4.
+- If you prefer to download all text posts from a profile, choose option number 5.
 
-Additionally, it's possible to download all direct messages (DMs) from a profile by selecting option number 5.
+Additionally, it's possible to download all direct messages (DMs) from a profile by selecting option number 6.
 
 ### Note
 
