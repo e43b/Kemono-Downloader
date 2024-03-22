@@ -145,13 +145,19 @@ for link in all_complete_links:
         file_thumb_links = soup.find_all("a", class_="fileThumb")
         for idx, link in enumerate(file_thumb_links):
             image_url = link["href"]
-            image_response = requests.get(image_url)
-            if image_response.status_code == 200:
-                _, ext = os.path.splitext(os.path.basename(urlparse(image_url).path))
-                image_path = os.path.join(post_folder, f"{idx + 1}{ext}")
-                with open(image_path, "wb") as f:
-                    f.write(image_response.content)
-                print(f"Image {idx + 1} of {title} downloaded.")
-        print(f"All downloads of {title} have been completed.\n")
+            _, ext = os.path.splitext(os.path.basename(urlparse(image_url).path))
+            image_path = os.path.join(post_folder, f"{idx + 1}{ext}")
+            # Check if the file already exists
+            if not os.path.exists(image_path):
+                print(f"Image {idx + 1} of {title} downloading...")
+                image_response = requests.get(image_url)
+                if image_response.status_code == 200:
+                    with open(image_path, "wb") as f:
+                        f.write(image_response.content)
+                    print(f"Image {idx + 1} of {title} downloaded.")
+                else:
+                    logging.error(f"Failed to download image from: {image_url}")
+            else:
+                print(f"Image {idx + 1} of {title} already exists. Skipping download.")
     else:
         logging.error(f"Failed to access the page: {link}\n")
