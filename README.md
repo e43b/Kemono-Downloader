@@ -1,4 +1,4 @@
-# Kemono-Downloader
+# Kemono-Downloader [![Views](https://hits.sh/github.com/e43kdw1/hits.svg)](https://github.com/e43b/Anibunker-Downloader/)
 
 English | [Português](README_pt.md) 
 
