@@ -2,6 +2,22 @@
 
 [English](README.md) | Português
 
+# 🚨 Projeto Encerrado 🚨
+
+Este projeto foi **encerrado**. Mas não se preocupe, uma nova versão está disponível! 🎉
+
+Confira a nova versão do **Kemono and Coomer Downloader** no novo repositório:
+👉 [https://github.com/e43b/Kemono-and-Coomer-Downloader/](https://github.com/e43b/Kemono-and-Coomer-Downloader/)
+
+Novas funcionalidades, melhorias e suporte contínuo esperam por você! 🔥
+
+Agradecemos a todos que utilizaram e contribuíram para este projeto. 🙏 Seu apoio foi fundamental para chegarmos até aqui. Continue conosco na nova versão e faça parte dessa evolução! 🚀
+
+Se você tiver dúvidas ou precisar de suporte, junte-se ao nosso Discord:
+👉 [Discord](https://discord.gg/TaPhfXawcE)
+
+Nos vemos lá! 💬✨
+
 ## Scraping de Imagens de Posts do [Kemono](https://kemono.su/)
 
 Este script Python permite baixar imagens de posts do Kemono, utilizando a biblioteca BeautifulSoup para fazer o parsing do conteúdo HTML da página.
