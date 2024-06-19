@@ -131,33 +131,36 @@ else:
 
 # Loop to download posts from each extracted link
 for link in all_complete_links:
-    response = requests.get(link)
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.content, "html.parser")
-        title_tag = soup.find("title")
-        title = title_tag.text.strip()
-        title = title.split("by")[0].strip().replace(" ", "_")
-        title = sanitize_filename(title)
-        title = title[:45]
-        # Create a folder for the post inside the main folder
-        post_folder = os.path.join(main_folder, title)
-        os.makedirs(post_folder, exist_ok=True)
-        file_thumb_links = soup.find_all("a", class_="fileThumb")
-        for idx, link in enumerate(file_thumb_links):
-            image_url = link["href"]
-            _, ext = os.path.splitext(os.path.basename(urlparse(image_url).path))
-            image_path = os.path.join(post_folder, f"{idx + 1}{ext}")
-            # Check if the file already exists
-            if not os.path.exists(image_path):
-                print(f"Image {idx + 1} of {title} downloading...")
-                image_response = requests.get(image_url)
-                if image_response.status_code == 200:
-                    with open(image_path, "wb") as f:
-                        f.write(image_response.content)
-                    print(f"Image {idx + 1} of {title} downloaded.")
+    try:
+        response = requests.get(link)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.content, "html.parser")
+            title_tag = soup.find("title")
+            title = title_tag.text.strip()
+            title = title.split("by")[0].strip().replace(" ", "_")
+            title = sanitize_filename(title)
+            title = title[:45]
+            # Create a folder for the post inside the main folder
+            post_folder = os.path.join(main_folder, title)
+            os.makedirs(post_folder, exist_ok=True)
+            file_thumb_links = soup.find_all("a", class_="fileThumb")
+            for idx, link in enumerate(file_thumb_links):
+                image_url = link["href"]
+                _, ext = os.path.splitext(os.path.basename(urlparse(image_url).path))
+                image_path = os.path.join(post_folder, f"{idx + 1}{ext}")
+                # Check if the file already exists
+                if not os.path.exists(image_path):
+                    print(f"Image {idx + 1} of {title} downloading...")
+                    image_response = requests.get(image_url)
+                    if image_response.status_code == 200:
+                        with open(image_path, "wb") as f:
+                            f.write(image_response.content)
+                        print(f"Image {idx + 1} of {title} downloaded.")
+                    else:
+                        logging.error(f"Failed to download image from: {image_url}")
                 else:
-                    logging.error(f"Failed to download image from: {image_url}")
-            else:
-                print(f"Image {idx + 1} of {title} already exists. Skipping download.")
-    else:
-        logging.error(f"Failed to access the page: {link}\n")
+                    print(f"Image {idx + 1} of {title} already exists. Skipping download.")
+        else:
+            logging.error(f"Failed to access the page: {link}\n")
+    except:
+        print('Something error happen. Continue...')
